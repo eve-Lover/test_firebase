@@ -1,5 +1,4 @@
 // tab1 - 나영
-// test
 import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
