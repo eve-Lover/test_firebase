@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:flutter/material.dart';
+//import 'package:firebase_core/firebase_core.dart';
+//import 'firebase_options.dart';
+import './tab1.dart';
 
 void main() async {
+  /*
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+  );*/
   runApp(MaterialApp(
       home: MyApp(),
   ));
@@ -23,7 +24,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final title=  TextStyle(color: Colors.black, fontSize: 25);
 
-  var tab = 0; // 현재 탭의 상태 : 0(홈), 1(샵)
+  int tab = 0; // 현재 탭의 상태 : 0(홈), 1(샵)
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class _MyAppState extends State<MyApp> {
           )
         ],
       ),
-      body: [Text('홈(나영)'), Text('실시간 추천(세민)')][tab],
+      body: [Home(), Text('실시간 추천(세민)')][tab],
       bottomNavigationBar: BottomNavigationBar(
         onTap : (i){
           setState(() {
@@ -49,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), label: 'shop'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'shop'),
         ],
 
       ),
