@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import './CourseClass.dart';
+import './style.dart';
 
 
 class Home extends StatefulWidget {
@@ -31,7 +32,7 @@ class _HomeState extends State<Home> {
         jsonData = courses[i];
         Course course = Course.fromJson(jsonData);
         c.add(course);
-        print(c[i].scenery.runtimeType); // String
+        print(c[i].time.runtimeType); // String
       }
       print(c.runtimeType); // List<Course>
 
@@ -41,17 +42,16 @@ class _HomeState extends State<Home> {
 
   List<Course> list1 = List.empty(growable: true); // 풍경
   List<Course> list2 = List.empty(growable: true); // 휠체어 구간
-
+  List<Course> list3 = List.empty(growable: true); // 도보 소요 시간
 
   recCourses() async{ // 코스 추천
     for(int i = 0; i < c.length; i++ ){
       if(c[i].scenery.toString().contains('오름')){
         setState(() {
           list1.add(c[i]);
-          print(c[i].courseName);
+         // print(c[i].courseName);
         });
-      }else
-        continue;
+      }
     }
     for(int i = 0; i < list1.length; i++){
       if(c[i].isWheel == false){
@@ -60,7 +60,14 @@ class _HomeState extends State<Home> {
         });
       }
     }
-    print(list2);
+    for(int i = 0; i < c.length; i++ ){
+      if(c[i].time.runtimeType == int && c[i].time <= 60){ // 60분 이하
+        setState(() {
+          list3.add(c[i]);
+         // print(c[i].time);
+        });
+      }
+    }
   }
 
   start() async{
@@ -80,16 +87,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ShowCourses(list1: list1, list2: list2),
+      body: ShowCourses(list1: list1, list2: list2, list3:list3),
     );
   }
 }
 
 class ShowCourses extends StatefulWidget {
-  const ShowCourses({Key? key, this.list1, this.list2}) : super(key: key);
+  const ShowCourses({Key? key, this.list1, this.list2, this.list3}) : super(key: key);
 
   final list1;
   final list2;
+  final list3;
 
   @override
   State<ShowCourses> createState() => _ShowCoursesState();
@@ -129,6 +137,25 @@ class _ShowCoursesState extends State<ShowCourses> {
                 );
               }
           ),
+        ),
+        SizedBox(
+          height: 30,
+          child: Text('회원님이 선호하는 도보 시간',),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 20.0),
+          height: 400,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: widget.list3.length,
+              itemBuilder: (context, i){
+                return Text(widget.list3[i].courseName);
+              }
+          ),
+        ),
+        SizedBox(
+          height: 30,
+          child: Text('휠체어 구간',),
         ),
         Container(
           margin: EdgeInsets.symmetric(vertical: 20.0),
