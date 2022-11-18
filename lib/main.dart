@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 //import 'firebase_options.dart';
 import './tab1.dart';
 import './style.dart';
+import './tab2.dart';
+import './checkOptions.dart';
 
 void main() async {
   /*
