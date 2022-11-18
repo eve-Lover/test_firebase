@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('어디올레', style: title),
+        title: Text('어디올레', style: title), centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.add_box_outlined),
@@ -53,9 +53,12 @@ class _MyAppState extends State<MyApp> {
       ),
       body: [
         ChangeNotifierProvider(
-          create: (c) => UserStore1(),
-          child: Home()),
-          Text('실시간 추천(세민)'), MyPage()
+            create: (context) => UserStore1(),
+            child: Home()),
+        Text('실시간 추천(세민)'),
+        ChangeNotifierProvider(
+            create: (context) => UserStore1(),
+            child: MyPage())
       ][tab],
       bottomNavigationBar: BottomNavigationBar(
         onTap : (i){

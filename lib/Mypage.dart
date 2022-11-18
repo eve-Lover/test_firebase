@@ -13,6 +13,7 @@ class _MyPageState extends State<MyPage> {
   // Color color = Colors.white;
 
 // 풍경
+
   List<String> text1 = ['산', '바다', '오름', '시내','시골'];
   List<Icon> icons1 = [
     const Icon(Icons.landscape, color: Colors.black, size: 50.0,),
@@ -21,12 +22,12 @@ class _MyPageState extends State<MyPage> {
     const Icon(Icons.location_city,color: Colors.black, size: 50.0, ),
     const Icon(Icons.nature,color: Colors.black, size: 50.0,)
   ];
-  List<bool> isSelected1 = List<bool>.filled(5, true);
+  List<bool> isSelected1 = List<bool>.filled(5, false);
   List<Color> colors1 = List<Color>.filled(5, Colors.white);
 
 // 도보 시간
   List<String> text2 = ['30분 미만', '60분 미만', '90분 미만', '90분 이상'];
-  List<bool> isSelected2 = List<bool>.filled(4, true);
+  List<bool> isSelected2 = List<bool>.filled(4, false);
   List<Color> colors2 = List<Color>.filled(4, Colors.white);
 
   // 휠체어 구간 유무
