@@ -4,6 +4,9 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import './CourseClass.dart';
 import './style.dart';
+import './Mypage.dart';
+import 'package:provider/provider.dart';
+import 'UserInfo.dart';
 
 
 class Home extends StatefulWidget {
@@ -84,8 +87,11 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ShowCourses(list1: list1, list2: list2, list3:list3),
+    return ChangeNotifierProvider(
+      create: (c) => UserStore1(),
+        child: Scaffold(
+        body: ShowCourses(list1: list1, list2: list2, list3:list3),
+      ),
     );
   }
 }
@@ -102,66 +108,109 @@ class ShowCourses extends StatefulWidget {
 }
 
 class _ShowCoursesState extends State<ShowCourses> {
+  final TextStyle _style1 = const TextStyle(
+   //color: Colors.black54,
+    fontFamily: "Koddi",
+    fontWeight: FontWeight.w600,
+    fontSize: 30.0
+  );
+  final TextStyle _style2 = const TextStyle(
+      fontFamily: "Koddi",
+      fontWeight: FontWeight.w500,
+      fontSize: 20.0
+  );
+
+  final TextStyle _style3 = const TextStyle(
+      fontFamily: "Koddi",
+      fontWeight: FontWeight.w500,
+      fontSize: 20.0
+  );
+
+  BoxDecoration boxDecoration = BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Colors.white,
+      border: Border.all(color: Colors.black)
+  );
+
+  if()
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
+        const SizedBox(height:20),
         Container(
-          margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-          height: 25,
-          child: const Text('회원님이 좋아하는 풍경', style: TextStyle(fontSize: 20.0),),
+          padding: const EdgeInsets.all(10.0),
+          margin: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 0.0),
+          height: 60,
+          child: Row(
+            children: [
+              const Icon(Icons.visibility_outlined, color: Colors.pinkAccent, size: 40.0 ,),
+              const SizedBox(width: 20),
+              Text('회원님이 좋아하는 풍경', style: _style1),
+            ],
+          ),
         ),
         Container(
-          margin: const EdgeInsets.symmetric(vertical: 20.0),
+          //margin: const EdgeInsets.symmetric(vertical: 20.0),
+          margin: const EdgeInsets.all(10.0),
           height: 300,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: widget.list1.length,
               itemBuilder: (context, i){
                 return Container(
-                  width: 400,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black)
-                  ),
+                  width: 600,
+                  decoration: boxDecoration,
                   margin: const EdgeInsets.all(2.0),
-                  child: Column(
-                    children: [
-                      Text(widget.list1[i].courseName),
-                      Text(widget.list1[i].courseNo),
-                      Text(widget.list1[i].startAddress)
-                    ],
+                  child: Container(
+                    margin: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(widget.list1[i].courseName, style: _style2),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(widget.list1[i].courseNo, style: _style2),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(widget.list1[i].startAddress, style: _style2),
+                        )
+                      ],
+                    ),
                   ),
                 );
               }
           ),
         ),
+        const Divider(),
         Container(
           margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
           height: 25,
-          child: const Text('회원님이 선호하는 도보시간', style: TextStyle(fontSize: 20.0),),
+          child: Text('회원님이 선호하는 도보시간', style: _style1),
         ),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 20.0),
           height: 300,
+
+
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: widget.list3.length,
               itemBuilder: (context, i){
                 return Container(
                   width: 400,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black)
-                  ),
+                  decoration: boxDecoration,
                   margin: const EdgeInsets.all(2.0),
                   child: Column(
                     children: [
-                      Text(widget.list3[i].courseName),
-                      Text(widget.list3[i].courseNo),
-                      Text(widget.list3[i].startAddress)
+                      Text(widget.list3[i].courseName, style: _style2,),
+                      Text(widget.list3[i].courseNo, style: _style2),
+                      Text(widget.list3[i].startAddress, style: _style2)
                     ],
                   ),
                 );
@@ -171,7 +220,7 @@ class _ShowCoursesState extends State<ShowCourses> {
         Container(
           margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
           height: 25,
-          child: const Text('휠체어 구간을 찾는다면?', style: TextStyle(fontSize: 20.0),),
+          child: Text('휠체어 구간을 찾는다면?', style: _style1),
         ),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 20.0),
@@ -182,17 +231,13 @@ class _ShowCoursesState extends State<ShowCourses> {
               itemBuilder: (context, i){
                 return Container(
                   width: 400,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black)
-                  ),
-                  margin: EdgeInsets.all(2.0),
+                  decoration: boxDecoration,
+                  margin: const EdgeInsets.all(2.0),
                   child: Column(
                     children: [
-                      Text(widget.list2[i].courseName),
-                      Text(widget.list2[i].courseNo.toString()),
-                      Text(widget.list2[i].startAddress)
+                      Text(widget.list2[i].courseName, style: _style2),
+                      Text(widget.list2[i].courseNo.toString(), style: _style2),
+                      Text(widget.list2[i].startAddress, style: _style2)
                     ],
                   ),
                 );
