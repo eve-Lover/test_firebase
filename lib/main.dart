@@ -5,6 +5,7 @@ import './tab1.dart';
 import './style.dart';
 import './tab2.dart';
 import './checkOptions.dart';
+import './Mypage.dart';
 
 void main() async {
   /*
@@ -43,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           )
         ],
       ),
-      body: [Home(), Text('실시간 추천(세민)')][tab],
+      body: [Home(), Text('실시간 추천(세민)'), MyPage()][tab],
       bottomNavigationBar: BottomNavigationBar(
         onTap : (i){
           setState(() {
@@ -55,6 +56,7 @@ class _MyAppState extends State<MyApp> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'shop'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'mypage'),
         ],
 
       ),

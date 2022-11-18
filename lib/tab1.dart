@@ -27,17 +27,15 @@ class _HomeState extends State<Home> {
 
     setState((){
       courses = jsonDecode(jsonString);
-      print(courses.length);
+      //print(courses.length);
       for(int i = 0; i<courses.length; i++){
         jsonData = courses[i];
         Course course = Course.fromJson(jsonData);
         c.add(course);
-        print(c[i].time.runtimeType); // String
+        //print(c[i].time.runtimeType); // String
       }
-      print(c.runtimeType); // List<Course>
-
+      //print(c.runtimeType); // List<Course>
     });
-
   }
 
   List<Course> list1 = List.empty(growable: true); // 풍경
@@ -108,12 +106,13 @@ class _ShowCoursesState extends State<ShowCourses> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        SizedBox(
-          height: 30,
-          child: Text('회원님이 좋아하는 풍경',),
+        Container(
+          margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+          height: 25,
+          child: const Text('회원님이 좋아하는 풍경', style: TextStyle(fontSize: 20.0),),
         ),
         Container(
-          margin: EdgeInsets.symmetric(vertical: 20.0),
+          margin: const EdgeInsets.symmetric(vertical: 20.0),
           height: 300,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -126,7 +125,7 @@ class _ShowCoursesState extends State<ShowCourses> {
                       color: Colors.white,
                       border: Border.all(color: Colors.black)
                   ),
-                  margin: EdgeInsets.all(2.0),
+                  margin: const EdgeInsets.all(2.0),
                   child: Column(
                     children: [
                       Text(widget.list1[i].courseName),
@@ -138,33 +137,65 @@ class _ShowCoursesState extends State<ShowCourses> {
               }
           ),
         ),
-        SizedBox(
-          height: 30,
-          child: Text('회원님이 선호하는 도보 시간',),
+        Container(
+          margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+          height: 25,
+          child: const Text('회원님이 선호하는 도보시간', style: TextStyle(fontSize: 20.0),),
         ),
         Container(
-          margin: EdgeInsets.symmetric(vertical: 20.0),
-          height: 400,
+          margin: const EdgeInsets.symmetric(vertical: 20.0),
+          height: 300,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: widget.list3.length,
               itemBuilder: (context, i){
-                return Text(widget.list3[i].courseName);
+                return Container(
+                  width: 400,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black)
+                  ),
+                  margin: const EdgeInsets.all(2.0),
+                  child: Column(
+                    children: [
+                      Text(widget.list3[i].courseName),
+                      Text(widget.list3[i].courseNo),
+                      Text(widget.list3[i].startAddress)
+                    ],
+                  ),
+                );
               }
           ),
         ),
-        SizedBox(
-          height: 30,
-          child: Text('휠체어 구간',),
+        Container(
+          margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+          height: 25,
+          child: const Text('휠체어 구간을 찾는다면?', style: TextStyle(fontSize: 20.0),),
         ),
         Container(
-          margin: EdgeInsets.symmetric(vertical: 20.0),
-          height: 400,
+          margin: const EdgeInsets.symmetric(vertical: 20.0),
+          height: 300,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: widget.list2.length,
               itemBuilder: (context, i){
-                return Text(widget.list2[i].courseName);
+                return Container(
+                  width: 400,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black)
+                  ),
+                  margin: EdgeInsets.all(2.0),
+                  child: Column(
+                    children: [
+                      Text(widget.list2[i].courseName),
+                      Text(widget.list2[i].courseNo.toString()),
+                      Text(widget.list2[i].startAddress)
+                    ],
+                  ),
+                );
               }
           ),
         ),
