@@ -27,7 +27,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final title=  TextStyle(color: Colors.black, fontSize: 25);
+  final title=  const TextStyle(
+      color: Colors.black,
+      fontSize: 25,
+      fontFamily: "Koddi",
+      fontWeight: FontWeight.w700
+  );
 
   int tab = 0; // 현재 탭의 상태 : 0(홈), 1(샵)
 
