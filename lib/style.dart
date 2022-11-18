@@ -16,9 +16,12 @@ ThemeData theme = ThemeData(
         )
     ),
     iconTheme: const IconThemeData( color: Colors.black),
+    /*
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+            elevation: 1,
         )
-        ),
+        ),*/
 );
