@@ -8,7 +8,6 @@ import './Mypage.dart';
 import 'package:provider/provider.dart';
 import 'UserInfo.dart';
 
-
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -78,9 +77,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    // getCourses();
     start();
   }
 
@@ -90,7 +87,7 @@ class _HomeState extends State<Home> {
         body: ShowCourses(list1: list1, list2: list2, list3:list3),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.place_outlined),
-          onPressed: (){},
+          onPressed: (){}, // 지도로 조회
           backgroundColor: Colors.teal,
         ),
     );
@@ -126,7 +123,6 @@ class _ShowCoursesState extends State<ShowCourses> {
       fontWeight: FontWeight.w500,
       fontSize: 18.0
   );
-
   BoxDecoration boxDecoration = BoxDecoration(
       borderRadius: BorderRadius.circular(10),
       color: Colors.white,
@@ -195,7 +191,7 @@ class _ShowCoursesState extends State<ShowCourses> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(Icons.location_pin, size: 30.0,),
+                              const Icon(Icons.location_pin, size: 30.0,),
                               Text('출발지: ', style: _style3),
                               Expanded(child: Text(widget.list1[i].startAddress, style: _style3)),
                             ],
@@ -267,7 +263,7 @@ class _ShowCoursesState extends State<ShowCourses> {
                             ]
                           ),),
 */
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -283,11 +279,11 @@ class _ShowCoursesState extends State<ShowCourses> {
                                   return const Icon(Icons.close);
                                 }
                               }),
-                              SizedBox(width: 20,),
-                              Icon(Icons.update_outlined),
+                              const SizedBox(width: 20,),
+                              const Icon(Icons.update_outlined),
                               Text('도보 시간: ${widget.list1[i].time}분', style: _style3,),
-                              SizedBox(width: 20,),
-                              Icon(Icons.directions_walk),
+                              const SizedBox(width: 20,),
+                              const Icon(Icons.directions_walk),
                               Text('도보 거리: ${widget.list1[i].distance}km', style: _style3,),
                             ],
                           ),
